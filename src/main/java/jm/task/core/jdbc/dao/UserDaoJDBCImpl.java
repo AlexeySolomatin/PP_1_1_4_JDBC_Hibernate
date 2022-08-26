@@ -9,6 +9,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+
+
     public void createUsersTable() {
 
     }
@@ -26,6 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
+
         return null;
     }
 

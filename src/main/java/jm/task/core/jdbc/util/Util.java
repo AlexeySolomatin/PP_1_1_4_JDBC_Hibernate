@@ -11,9 +11,9 @@ public class Util {
     public final static String URL = "jdbc:mysql://localhost:3306/mydbtest";
     public final static String USERNAME = "root";
     public final static String PASSWORD = "root";
+    private static Connection connection = null;
 
     public static Connection getConnection() {
-        Connection connection = null;
 
         try {
             Driver driver = new com.mysql.cj.jdbc.Driver();
@@ -24,16 +24,22 @@ public class Util {
                 System.out.println("Соединение с БД установленно!");
             }
 
-            connection.close();
-
-            if (!connection.isClosed()) {
-                System.out.println("Соединение с БД закрыто!");
-            }
-
         } catch (SQLException e) {
             System.err.println("Не удалось загрузить класс драйвера!");
         }
 
         return connection;
+    }
+
+    public static void closeConnection() {
+        try {
+            connection.close();
+
+            if (connection.isClosed()) {
+                System.out.println("Соединение с БД закрыто!");
+            }
+        } catch (SQLException e) {
+            System.err.println("Соединения с БД отсутствовало!");
+        }
     }
 }
